@@ -1,5 +1,6 @@
 const state = {
-  loginBoolean: false
+  loginBoolean: false,
+  user: JSON.parse(localStorage.getItem('user')) || {},
 };
 
 export default state;
