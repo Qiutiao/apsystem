@@ -13,18 +13,6 @@
       <el-form-item label="确认密码" prop="checkPass">
         <el-input v-model="ruleForm.checkPass" :maxlength="20" show-password type="password" autocomplete="off" />
       </el-form-item>
-      <!-- <el-form-item label="验证码" prop="verifyCode">
-        <el-row type="flex" justify="space-between" :gutter="16">
-          <el-col :span="10"> <el-input v-model="ruleForm.verifyCode" :maxlength="4" /></el-col>
-          <el-col :span="10" style="height:40px;">
-            <img
-              style="height:100%;width:100%"
-              :src="`data:image/bmp;base64,${imageBase64}`"
-              @click.stop="getCode"
-            >
-          </el-col>
-        </el-row>
-      </el-form-item> -->
       <el-form-item>
         <el-button @click="toLogin">登录</el-button>
         <el-button type="primary" :loading="loading" @click="submitForm('ruleForm')">确认注册</el-button>
@@ -143,18 +131,8 @@ export default {
     computed: {},
     watch: {},
     mounted() {
-      // this.getCode();
     },
     methods: {
-    // 获取验证码
-    getCode() {
-      this.$api.user.verificationCode()
-        .then(res => {
-          const { data: { data }} = res;
-          this.imageBase64 = data.imageBase64;
-          this.vid = data.vid;
-        });
-    },
     // 表单提交
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {

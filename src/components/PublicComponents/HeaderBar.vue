@@ -83,14 +83,14 @@ export default {
 </script>
 
 <style scoped lang="less">
-     .HeaderBar {
-  background-color: #fff;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  /deep/.el-select .el-input {
-    width: 80px;
+  .HeaderBar {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    /deep/.el-select .el-input {
+      width: 80px;
   }
   /deep/.input-with-select {
     width: 25vw;
