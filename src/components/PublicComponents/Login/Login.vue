@@ -33,30 +33,12 @@ export default {
       }
       callback();
     };
-    var checkCode = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入验证码'));
-      } else if (value.length < 4) {
-        callback(new Error('验证码应为4位'));
-      } else {
-        callback();
-      }
-    };
     return {
-
-      // QQifarm
-      qqDialogVisible: false,
-      ifarmUrl: '',
-      // 验证码数据
-      imageBase64: null,
       // 登录数据
       loginForm: {
         username: '',
-        password: '',
-        verifyCode: ''
+        password: ''
       },
-      // 验证码id
-      valid: '',
       // 验证规则
       rules: {
         username: [
@@ -64,9 +46,6 @@ export default {
         ],
         password: [
           { validator: validatePass, trigger: 'blur' }
-        ],
-        verifyCode: [
-          { validator: checkCode, trigger: 'blur' }
         ]
       }
     };
@@ -104,8 +83,6 @@ export default {
           username: this.loginForm.username.trim(),
           password: this.loginForm.password
         },
-        vid: this.vid,
-        value: this.loginForm.verifyCode
       };
       this.$api.user.login(reqBody)
         .then(res => {
@@ -123,7 +100,6 @@ export default {
           console.error(err);
         });
       this.loading = false;
-      this.getCode();
     }
   }
 };

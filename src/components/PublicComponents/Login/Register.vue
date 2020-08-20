@@ -86,18 +86,8 @@ export default {
             callback();
         }
         };
-        var checkCode = (rule, value, callback) => {
-        if (value === '') {
-            callback(new Error('请输入验证码'));
-        } else if (value.length < 4) {
-            callback(new Error('验证码应为4位'));
-        } else {
-            callback();
-        }
-        };
+        
         return {
-        // 验证码数据
-        imageBase64: null,
         // 登录加载
         loading: false,
         // 表格数据
@@ -106,7 +96,9 @@ export default {
             checkPass: '',
             email: '',
             username: '',
-            verifyCode: ''
+            address: '',
+            phone: ''
+
         },
         // 验证规则
         rules: {
@@ -121,9 +113,6 @@ export default {
             ],
             username: [
             { validator: checkName, trigger: 'blur' }
-            ],
-            verifyCode: [
-            { validator: checkCode, trigger: 'blur' }
             ]
         }
         };
@@ -156,13 +145,13 @@ export default {
     // 登录
     register() {
       const reqBody = {
-        userInfo: {
-          username: this.ruleForm.username.trim(),
+        PersonInfoStr: {
+          name: this.ruleForm.username.trim(),
           email: this.ruleForm.email,
-          password: this.ruleForm.password
-        },
-        vid: this.vid,
-        value: this.ruleForm.verifyCode
+          password: this.ruleForm.password,
+          address: this.ruleForm.address,
+          phone: this.ruleForm.phone
+        }
       };
       this.$api.user.register(reqBody)
         .then(res => {
@@ -179,7 +168,6 @@ export default {
           console.error(err);
         });
       this.loading = false;
-      this.getCode();
     }
   }
 }
